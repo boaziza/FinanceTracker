@@ -1,0 +1,16 @@
+.inline {
+    display: inline-block;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    padding-left: 200px;
+    display: inline-block;
+}
+
+ul li {
+    display: inline-block;
+}
