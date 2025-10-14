@@ -1,21 +1,97 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../styles/index.css">
-        <title></title>
-    </head>
-    <body>
-        <nav>
-            <h2 class="inline"><a href="../index.html">Finance Tracker</a></h2>
-            <ul>
-                <li ><a href="dashboard.html">Dashboard</a>&nbsp;&nbsp;&nbsp;</li>
-                <li ><a href="transactions.html">Transactions</a>&nbsp;&nbsp;&nbsp;</li>
-                <li><a href="contact.html">Contact Us</a>&nbsp;&nbsp;&nbsp;</li>
-                <li ><a href="setting.html">Setting</a>&nbsp;&nbsp;&nbsp;</li>
-            </ul>
-        </nav>        
-    </body>
-    <footer>
-        
-    </footer>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Finance Tracker</title>
+  <link rel="stylesheet" href="../styles/index.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h2 class="logo"><a href="index.html">Finance Tracker</a></h2>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="setting.html">Settings</a></li>
+    </ul>
+  </nav>
+
+  <section class="summary">
+    <div class="card">
+        <h3> Total Income </h3>
+        <span class="amount" id="totalIncome">$1400</span>
+    </div>
+
+    <div class="card">
+        <h3> Total Expenses </h3>
+        <span class="amount" id="totalExpenses"></span>
+    </div>
+
+    <div class="card">
+        <h3> Balance </h3>
+        <span class="amount" id="Balance">$1400</span>
+    </div>
+
+    <div class="break"></div>
+
+    <div class="card">
+        <h3> Last 7 Days </h3>
+        <table> </table>
+    </div>
+    <div class="card">
+
+    </div>
+
+    <div class="break"></div>
+
+    <section>
+        <div class="card">
+            <h4> RECENT TRANSACTIONS </h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th> Date </th>
+                        <th> Description </th>
+                        <th> Category </th>
+                        <th> Amount </th>
+                    </tr>
+                </thead>
+                <tbody id="recordTables">
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <div class="break"></div>
+
+    <section class="addTransaction" >
+        <h4> ADD TRANSACTION</h4><br>
+        <label for="description"> Description: </label><br>
+        <input type="text" name="description" id="description" placeholder="Description"><br><br>
+
+        <label for="amount">AMOUNT(RWF): </label><br>
+        <input type="text" name="amount" id="amount"><br><br>
+
+        <label for="date"> DATE: </label><br>
+        <input type="date" name="date" id="date" placeholder="MM-DD-YYYY"><br><br>
+
+        <label for="category"> Category: </label><br>
+        <input type="text" name="category" id="category"><br><br><br>
+
+        <button onclick="addStorage()" type="submit"> Save </button><br>
+        <button class=""> Cancel </button>
+
+    </section>
+
+  </section>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+  </script>
+  <script src="../jsScripts/transaction.js"></script>
+</body>
 </html>

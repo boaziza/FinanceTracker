@@ -1,24 +1,51 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Contact </title>
-        <link rel="stylesheet" href="../styles/index.css">
-    </head>
-    <body> 
-        <nav>
-            <h2 class="inline"><a href="../index.html">Finance Tracker</a></h2>
-            <ul>
-                <li ><a href="dashboard.html">Dashboard</a>&nbsp;&nbsp;&nbsp;</li>
-                <li ><a href="transactions.html">Transactions</a>&nbsp;&nbsp;&nbsp;</li>
-                <li><a href="contact.html">Contact Us</a>&nbsp;&nbsp;&nbsp;</li>
-                <li ><a href="setting.html">Setting</a>&nbsp;&nbsp;&nbsp;</li>
-            </ul>
-        </nav>       
-        <p>Contact Us</p>
-        <p> GitHub: <a href="https://github.com/boaziza">@boaziza</a></p>
-        <p> Email: b.iza@alustudent.com</p>
-    </body>
-    <footer>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Finance Tracker</title>
+    <link rel="stylesheet" href="../styles/index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h2 class="logo"><a href="index.html">Finance Tracker</a></h2>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+        <ul class="nav-links" id="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="transactions.html">Transactions</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="setting.html">Settings</a></li>
+        </ul>
+    </nav> <br> <br> 
 
-    </footer>
+    <h2>Reach Out</h2>   
+
+    <div class="contact">
+
+        <label for="email">EMAIL</label><br>
+        <input type="text" name="email" id="email" placeholder="username@mail.com"><br><br><br>
+
+        <label for="name">NAME</label><br>
+        <input type="text" name="name" id="name"><br><br><br>
+
+        <label for="review">REVIEW</label><br>
+        <input type="text" name="review" id="review"><br><br>
+
+        <button onclick="storeReview()"> Send </button><br>
+    </div>
+
+    <div id="reviewCards"></div>
+
+    <div class="contact">
+        <p> GitHub: <a href="https://github.com/boaziza">@boaziza</a></p>
+        <p> Email: <a href="b.iza@alustudent.com">@boaziza</a></p>
+    </div>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('nav-links').classList.toggle('active');
+        });
+    </script>
+    <script src="../jsScripts/contact.js"> </script>
+</body>
 </html>
