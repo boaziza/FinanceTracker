@@ -5,45 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Settings — Student Finance Tracker</title>
   <link rel="stylesheet" href="../styles/setting.css">
-  <style>
-    /* Minimal page-specific styles so the file is usable standalone */
-    :root{--gap:1rem;--accent:#0b74de}
-    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;padding:0;background:#fafafa;color:#111}
-    .container{max-width:980px;margin:1rem auto;padding:1rem}
-    fieldset{border:1px solid #ddd;padding:0.75rem;margin-bottom:1rem;border-radius:8px}
-    label{display:block;margin-bottom:0.25rem;font-weight:600}
-    input[type=text], input[type=number], input[type=date], select, textarea{width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:6px}
-    .row{display:flex;gap:var(--gap);flex-wrap:wrap}
-    .col{flex:1 1 220px}
-    .btn{display:inline-block;padding:0.5rem 0.75rem;border-radius:8px;border:0;background:var(--accent);color:white;cursor:pointer}
-    .btn-secondary{background:#f1f1f1;color:#111}
-    .small{font-size:0.9rem}
-    .list{margin:0;padding:0;list-style:none}
-    .list li{display:flex;justify-content:space-between;align-items:center;padding:0.25rem 0.5rem;border-bottom:1px dashed #eee}
-    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-    a:focus, button:focus, input:focus{outline:3px solid rgba(11,116,222,0.25);outline-offset:2px}
-    .notice{padding:0.5rem;border-radius:6px;background:#fff9db;border:1px solid #f0e6b8}
-  </style>
 </head>
 <body>
-  <a class="visually-hidden" href="#main-content">Skip to content</a>
-  <header class="navbar" role="banner">
-    <nav aria-label="Primary" class="container">
-      <h1 class="logo"><a href="index.html">Finance Tracker</a></h1>
-      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">☰</button>
+  <nav class="navbar">
+      <h2 class="logo"><a href="index.html">Finance Tracker</a></h2>
+      <button class="menu-toggle" id="menu-toggle">☰</button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="transactions.html">Transactions</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="setting.html" aria-current="page">Settings</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="setting.html">Settings</a></li>
       </ul>
-    </nav>
-  </header>
+  </nav> <br> <br> 
 
   <main id="main-content" class="container" role="main">
     <section aria-labelledby="settings-heading">
       <h2 id="settings-heading">Settings</h2>
-      <p class="small">Configure app preferences, currency rates, categories and import/export data. Changes auto-save to <code>localStorage</code>.</p>
+      <p class="small">Configure app preferences, currency rates, categories and import/export data.</p>
 
       <div class="row">
         <div class="col">
@@ -52,20 +30,20 @@
 
             <label for="base-currency">Base currency</label>
             <select id="base-currency" aria-describedby="currency-help">
+              <option value="RWF">RWF</option>
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
-              <option value="RWF">RWF</option>
             </select>
-            <p id="currency-help" class="small">Enter manual conversion rates for two extra currencies (no external APIs).</p>
+            <p id="currency-help" class="small">Enter manual conversion rates for two extra currencies.</p>
 
             <label for="currency-1">Currency 1 (code)</label>
-            <input id="currency-1" type="text" maxlength="3" placeholder="e.g., EUR" />
-            <label for="rate-1">Rate: 1 base = ? (numeric, up to 4 decimals)</label>
+            <input id="currency-1" type="text" maxlength="3" placeholder="e.g., RWF" />
+            <label for="rate-1">Exchange Rate to base currency = ?</label>
             <input id="rate-1" type="number" step="0.0001" min="0" placeholder="e.g., 0.9234" />
 
             <label for="currency-2">Currency 2 (code)</label>
-            <input id="currency-2" type="text" maxlength="3" placeholder="e.g., RWF" />
-            <label for="rate-2">Rate: 1 base = ?</label>
+            <input id="currency-2" type="text" maxlength="3" placeholder="e.g., EUR" />
+            <label for="rate-2">Exchange Rate to base currency = ?</label>
             <input id="rate-2" type="number" step="0.0001" min="0" placeholder="e.g., 1200" />
 
           </fieldset>
@@ -99,14 +77,12 @@
 
         <aside class="col" aria-labelledby="about-heading">
           <section id="about" aria-labelledby="about-heading" class="notice">
-            <h3 id="about-heading">About</h3>
-            <p class="small">Student Finance Tracker — manage budgets and transactions. This settings page lets you set currency rates, categories and import/export your records.</p>
-            <p class="small">Contact: <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a> • <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+            <p class="small">Contact: <a href="https://github.com/boaziza" target="_blank" rel="noopener">GitHub</a> • <a href="mailto:b.iza@alustudent.com">b.iza@alustudent.com</a></p>
           </section>
 
           <section aria-labelledby="stats-heading" style="margin-top:1rem">
             <h3 id="stats-heading">Quick Actions</h3>
-            <p><button id="save-now" class="btn">Save Settings Now</button></p>
+            <p><button id="save-now" class="btn">Save Settings</button></p>
             <p class="small">Status: <span id="status-text" role="status" aria-live="polite">Idle</span></p>
           </section>
         </aside>
@@ -118,169 +94,6 @@
   <footer class="container" role="contentinfo">
     <p class="small">© Student Finance Tracker — include README and demo video link in your repo.</p>
   </footer>
-
-  <script type="module">
-    // ES module-style script contained in the page. Modular files are suggested for the repo.
-    const KEY_SETTINGS = 'finance:settings';
-    const DEFAULT_CATEGORIES = ['Food','Books','Transport','Entertainment','Fees','Other'];
-
-    // Simple validators (assignment required patterns)
-    const validators = {
-      category: /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/,
-      currencyCode: /^[A-Z]{3}$/, // 3-letter currency code
-      rate: /^(0|[1-9]\d*)(\.\d{1,4})?$/
-    };
-
-    // Safe regex compiler for search feature (exportable in search module)
-    export function compileRegex (input, flags='i'){
-      try { return input ? new RegExp(input, flags) : null; } catch(e){ return null; }
-    }
-
-    // Storage helpers
-    const saveSettings = (obj) => localStorage.setItem(KEY_SETTINGS, JSON.stringify(obj));
-    const loadSettings = () => JSON.parse(localStorage.getItem(KEY_SETTINGS) || 'null') || {};
-
-    // UI wiring
-    const $ = sel => document.querySelector(sel);
-    const $$ = sel => Array.from(document.querySelectorAll(sel));
-
-    // Elements
-    const baseCurrencyEl = $('#base-currency');
-    const curr1El = $('#currency-1');
-    const rate1El = $('#rate-1');
-    const curr2El = $('#currency-2');
-    const rate2El = $('#rate-2');
-    const categoryListEl = $('#category-list');
-    const newCategoryEl = $('#new-category');
-    const addCategoryBtn = $('#add-category');
-    const exportBtn = $('#export-json');
-    const importFileEl = $('#import-file');
-    const importErrorsEl = $('#import-errors');
-    const resetBtn = $('#reset-data');
-    const saveNowBtn = $('#save-now');
-    const statusText = $('#status-text');
-
-    // Initialize UI from storage
-    function renderCategories(categories){
-      categoryListEl.innerHTML = '';
-      categories.forEach(cat => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${cat}</span><span><button data-cat="${cat}" class="btn btn-secondary small remove-cat">Remove</button></span>`;
-        categoryListEl.appendChild(li);
-      });
-    }
-
-    function loadUI(){
-      const settings = loadSettings();
-      baseCurrencyEl.value = settings.baseCurrency || 'USD';
-      curr1El.value = settings.currency1?.code || '';
-      rate1El.value = settings.currency1?.rate || '';
-      curr2El.value = settings.currency2?.code || '';
-      rate2El.value = settings.currency2?.rate || '';
-      renderCategories(settings.categories || DEFAULT_CATEGORIES);
-    }
-
-    function saveUI(){
-      const cfg = {
-        baseCurrency: baseCurrencyEl.value,
-        currency1: curr1El.value ? { code: curr1El.value.toUpperCase(), rate: rate1El.value } : null,
-        currency2: curr2El.value ? { code: curr2El.value.toUpperCase(), rate: rate2El.value } : null,
-        categories: Array.from(categoryListEl.querySelectorAll('li span:first-child')).map(s => s.textContent)
-      };
-      saveSettings(cfg);
-      statusText.textContent = 'Settings saved at ' + new Date().toLocaleTimeString();
-    }
-
-    // Category add/remove with validation
-    addCategoryBtn.addEventListener('click', (e) => {
-      const val = newCategoryEl.value.trim();
-      if(!val){ newCategoryEl.focus(); return; }
-      if(!validators.category.test(val)){
-        alert('Category name invalid. Use letters, spaces, and hyphens only.');
-        return;
-      }
-      const existing = Array.from(categoryListEl.querySelectorAll('li span:first-child')).some(s=>s.textContent.toLowerCase()===val.toLowerCase());
-      if(existing){ alert('Category already exists'); return; }
-      const li = document.createElement('li');
-      li.innerHTML = `<span>${val}</span><span><button data-cat="${val}" class="btn btn-secondary small remove-cat">Remove</button></span>`;
-      categoryListEl.appendChild(li);
-      newCategoryEl.value='';
-      saveUI();
-    });
-
-    categoryListEl.addEventListener('click', (e)=>{
-      const btn = e.target.closest('.remove-cat');
-      if(!btn) return;
-      const cat = btn.dataset.cat;
-      if(!confirm(`Remove category "${cat}"? This will not change existing records.`)) return;
-      const li = btn.closest('li'); li?.remove();
-      saveUI();
-    });
-
-    // Export JSON (export only transactions stored under KEY 'finance:records')
-    exportBtn.addEventListener('click', ()=>{
-      const REC_KEY = 'finance:records';
-      const data = localStorage.getItem(REC_KEY) || '[]';
-      const blob = new Blob([data], {type:'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'finance-data.json'; document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
-      statusText.textContent = 'Exported JSON';
-    });
-
-    // Import JSON with validation
-    importFileEl.addEventListener('change', async (e)=>{
-      importErrorsEl.textContent = '';
-      const file = e.target.files[0]; if(!file) return;
-      try{
-        const text = await file.text();
-        const parsed = JSON.parse(text);
-        if(!Array.isArray(parsed)) throw new Error('JSON must be an array of records.');
-        // basic validation for each record
-        const errors = [];
-        parsed.forEach((rec, idx) => {
-          if(typeof rec.id !== 'string') errors.push(idx+1+': missing id');
-          if(!rec.description && !rec.title) errors.push(idx+1+': missing description/title');
-          if(typeof rec.amount !== 'number') errors.push(idx+1+': amount must be number');
-          if(!/^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/.test(rec.date||'')) errors.push(idx+1+': date invalid');
-        });
-        if(errors.length){ importErrorsEl.textContent = 'Import errors: ' + errors.join('; '); return; }
-        // If valid, save to records key (overwrites) — adjust behavior in app as needed
-        localStorage.setItem('finance:records', JSON.stringify(parsed));
-        statusText.textContent = 'Imported ' + parsed.length + ' records';
-      }catch(err){ importErrorsEl.textContent = 'Failed to import: ' + err.message; }
-      finally{ e.target.value = ''; }
-    });
-
-    // Reset app data (confirm)
-    resetBtn.addEventListener('click', ()=>{
-      if(!confirm('Reset all app data (records + settings)?')) return;
-      localStorage.removeItem('finance:records');
-      localStorage.removeItem(KEY_SETTINGS);
-      renderCategories(DEFAULT_CATEGORIES);
-      statusText.textContent = 'App data reset';
-    });
-
-    // Save now button
-    saveNowBtn.addEventListener('click', ()=>{ saveUI(); });
-
-    // Auto-save when inputs lose focus
-    $$("input,select").forEach(el=>el.addEventListener('blur', ()=>saveUI()));
-
-    // Initial load
-    loadUI();
-
-    // Menu toggle for small screens
-    $('#menu-toggle').addEventListener('click', function(){
-      const nav = $('#nav-links');
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('active');
-    });
-
-    // Expose functions for testing/dev from console
-    window.FinanceSettings = { loadSettings, saveSettings, compileRegex };
-  </script>
+  <script type="module" src="../jsScripts/setting.js"></script>
 </body>
 </html>

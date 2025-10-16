@@ -192,6 +192,48 @@ canvas {
   cursor: pointer;
 }
 
+.search-controls {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#caseSensitiveBtn {
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#caseSensitiveBtn.active {
+  background: #007bff;
+  color: white;
+}
+
+#searchError {
+  color: #dc3545;
+  font-size: 12px;
+}
+
+mark {
+  background-color: #ffeb3b;
+  padding: 2px 0;
+}
+
+.sort-arrow {
+  font-size: 12px;
+  color: #007bff;
+}
+
 @media (max-width: 740px) {
     .menu-toggle {
     display: block;

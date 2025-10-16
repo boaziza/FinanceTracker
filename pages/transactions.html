@@ -14,7 +14,7 @@
       <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="transactions.html">Transactions</a></li>
       <li><a href="contact.html">Contact Us</a></li>
-      <li><a href="settings.html">Settings</a></li>
+      <li><a href="setting.html">Settings</a></li>
     </ul>
   </nav>
 
@@ -39,26 +39,40 @@
       <input type="date" name="date" id="date">
       <input type="text" id="description" placeholder="Description" required>
       <input type="number" id="amount" placeholder="Amount" required>
-      <select id="category">
+      <select id="accounts">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
       </select>
+      <select id="category"></select>
       <button type="submit" onclick="addStorage()">Add</button>
     </form>
   </section>
 
   <section class="transactions">
     <h3>Recent Transactions</h3>
+    <div class="search-controls">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search with regex (e.g., ^2024.*income$)"
+        aria-label="Search transactions with regex pattern"
+      />
+      <button id="caseSensitiveBtn" type="button">Case: aa</button>
+      <span id="searchError" role="alert" aria-live="polite"></span>
+    </div>
     <table>
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Description</th>
+          <th data-sort="date" style="cursor:pointer">Date</th>
+          <th data-sort="description" style="cursor:pointer">Description</th>
           <th>Category</th>
-          <th>Amount</th>
+          <th>Accounts</th>
+          <th data-sort="amount" style="cursor:pointer">Amount</th>
         </tr>
       </thead>
-      <tbody id="transactionTable"></tbody>
+      <tbody id="transactionTable">
+        <tr><td colspan="5" style="text-align:center;">Loading transactions...</td></tr>
+      </tbody>
     </table>
   </section>
 
