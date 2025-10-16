@@ -81,8 +81,6 @@ body {
   font-weight: bold;
   color: black;
 }
-
-/* ===== Add Transaction Section ===== */
 .add-transaction {
   background-color: #fff;
   border-radius: 12px;
@@ -134,7 +132,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* ===== Transactions Table ===== */
 .transactions {
   margin: 40px 20px;
   background-color: #fff;

@@ -117,6 +117,7 @@ function displayStorage() {
 
         tbody.innerHTML = html;
         document.getElementById("totalIncome").innerText = `${baseCurrency} ${totalIncome}`;
+        
         document.getElementById("totalExpenses").innerText = `${baseCurrency} ${totalExpenses}`;
         document.getElementById("balance").innerText = `${baseCurrency} ${totalIncome - totalExpenses}`;
 
@@ -137,7 +138,9 @@ function updateChart() {
     return;
   }
   const ctx = canvas.getContext('2d');
+  
   const categories = [];
+  
   const totals = [];
 
   for (let i = 0; i < localStorage.length; i++) {
@@ -156,7 +159,9 @@ function updateChart() {
   }
 
   let incomeIndex = categories.indexOf("income");
+  
   let expenseIndex = categories.indexOf("expense");
+  
   let totalIncome = incomeIndex !== -1 ? totals[incomeIndex] : 0;
   let totalExpenses = expenseIndex !== -1 ? totals[expenseIndex] : 0;
 
@@ -175,6 +180,7 @@ function updateChart() {
       }]
     },
     options: {
+      
       plugins: {
         legend: {
           position: "bottom",
@@ -188,9 +194,12 @@ function updateChart() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const tBody = document.getElementById("transactionTable");
+  
   const searchInput = document.getElementById("searchInput");
   const caseBtn = document.getElementById("caseSensitiveBtn");
+  
   const searchError = document.getElementById("searchError");
+  
   const headers = document.querySelectorAll("th[data-sort]");
   let caseSensitive = false;
   let sortState = { key: null, asc: true };
@@ -198,10 +207,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const transactions = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
+    
     if (key.startsWith("transaction_")) {
+      
       const item = JSON.parse(localStorage.getItem(key));
-      // Ensure it has required fields
+
       if (item.date && item.description && item.category && item.amount) {
+        
         transactions.push(item);
       }
     }
