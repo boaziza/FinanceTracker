@@ -225,7 +225,8 @@ GitHub: [@boaziza](https://github.com/boaziza)
 Email: [b.iza@alustudent.com](mailto:b.iza@alustudent.com)
 
 ---
-
+## Wireframe
+![alt text](wireframe.png)
 ## 🪪 License
 
 This project is open-source and available under the **MIT License**.
