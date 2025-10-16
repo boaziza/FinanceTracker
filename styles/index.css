@@ -75,25 +75,72 @@ body {
   text-align: center;
 }
 
-.contact {    
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    padding: 25px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 30px;
-
+.contact {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 25px;
+  margin: 20px;
 }
 
-div input[type = "text"] {
-    border-radius: 9px;
-    width: 250px;
-    height: 40px;
+div label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
 }
 
-div input[name="description"] {
-    height: 100px;
+div input[type="text"] {
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #262652;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #1f1f3e;
+}
+
+#reviewCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+  margin: 20px;
+}
+
+.reviewCard {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reviewCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+.reviewCard h4 {
+  color: #262652;
+  margin-bottom: 8px;
+}
+
+.reviewCard p {
+  font-size: 14px;
+  color: #555;
 }
 
 h2 {
@@ -149,35 +196,44 @@ section h4 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 500px;
 }
-
-.reviewCard {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  padding: 25px;
-  text-align: center;
-}
-
 input {
     border-radius: 3px;
 
-}
-
-button {
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 7px;
-    background-color: rgb(38, 38, 82);
-    color: white;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
 }
 
 .break {
   flex-basis: 100%;
   height: 0; 
 }
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  color: #333;
+  background-color: #fff;
+  resize: vertical; /* allows user to expand vertically only */
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #262652;
+  box-shadow: 0 4px 12px rgba(38,38,82,0.15);
+}
+
+input:focus {
+  outline: none;
+  border-color: #262652;
+  box-shadow: 0 4px 12px rgba(38,38,82,0.15);
+}
+
+
 
 @media (max-width: 740px) {
   .menu-toggle {

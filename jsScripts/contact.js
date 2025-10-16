@@ -4,6 +4,11 @@ function storeReview() {
    const name = document.getElementById("name").value;
    const review = document.getElementById("review").value;
    
+   if (!name || !review || !email) {
+        alert("Fill out all the fields")
+        return;
+   }
+
    const data = {
         email : email,
         name : name,
@@ -25,28 +30,28 @@ function storeReview() {
 
 function displayReview() {
     const div = document.getElementById("reviewCards");
-    let html;  
+    let html = '';  
 
-    if (localStorage.length !== 0) {
+    const keys = Object.keys(localStorage).filter(k => k.startsWith('review_'));
+
+    if (keys.length !== 0) {
+
+        keys.sort((a, b) => b.localeCompare(a));
         
     
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            
-            if (key.startsWith("review_")) {
+        for (const key of keys) {
 
-                const value = localStorage.getItem(key);
-                const review = JSON.parse(value);
-                
-                html += `
-                    <div class="reviewCard">
-                        <p>${review.name}</p>
-                        <p>${review.email}</p>
-                        <p>${review.review}</p>
-                    </div> 
-                `; 
-            console.log("key",review)
-            }
+            const value = localStorage.getItem(key);
+            const review = JSON.parse(value);
+            
+            html += `
+                <div class="reviewCard">
+                    <h4>${review.name}</h4>
+                    <p><strong>Email:</strong> ${review.email}</p>
+                    <p>${review.review}</p>
+                </div> 
+            `; 
+            
 
         } 
         div.innerHTML = html;

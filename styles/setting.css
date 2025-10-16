@@ -1,0 +1,229 @@
+/* ==============================
+   SETTINGS PAGE STYLESHEET
+   Student Finance Tracker
+   ============================== */
+
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f1f3f4;
+  color: #333;
+  line-height: 1.6;
+  padding-bottom: 40px;
+}
+
+/* Navigation Bar (reuse style consistency) */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.logo a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: black;
+}
+
+/* Page Header */
+header h1 {
+  margin: 20px 10px;
+  font-size: 28px;
+  color: #262652;
+}
+
+/* Main Container */
+main {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Settings Section (Fieldsets) */
+fieldset {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+legend {
+  font-weight: 600;
+  color: #262652;
+  font-size: 18px;
+  padding: 0 8px;
+}
+
+/* Form Elements */
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #262652;
+  box-shadow: 0 4px 12px rgba(38,38,82,0.15);
+}
+
+/* Buttons */
+button {
+  margin-top: 15px;
+  background-color: #262652;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #1f1f3e;
+  transform: translateY(-2px);
+}
+
+/* Category List */
+#categoryList {
+  list-style: none;
+  margin-top: 10px;
+}
+
+#categoryList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+#categoryList li span {
+  font-weight: 500;
+}
+
+#categoryList button {
+  background-color: #d9534f;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+#categoryList button:hover {
+  background-color: #c9302c;
+}
+
+/* Status and Feedback Messages */
+.status-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #262652;
+}
+
+.error-message {
+  color: #d9534f;
+}
+
+.success-message {
+  color: #28a745;
+}
+
+/* Import/Export Section */
+.file-input {
+  margin-top: 10px;
+}
+
+.json-preview {
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 740px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  fieldset {
+    padding: 15px;
+  }
+
+  input, button, select {
+    font-size: 14px;
+  }
+}

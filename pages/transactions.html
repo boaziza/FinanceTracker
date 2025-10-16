@@ -4,94 +4,76 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Finance Tracker</title>
-  <link rel="stylesheet" href="../styles/index.css">
+  <link rel="stylesheet" href="../styles/transaction.css">
 </head>
 <body>
   <nav class="navbar">
-    <h2 class="logo"><a href="index.html">Finance Tracker</a></h2>
+    <h2 class="logo"><a href="../index.html">Finance Tracker</a></h2>
     <button class="menu-toggle" id="menu-toggle">☰</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="transactions.html">Transactions</a></li>
       <li><a href="contact.html">Contact Us</a></li>
-      <li><a href="setting.html">Settings</a></li>
+      <li><a href="settings.html">Settings</a></li>
     </ul>
   </nav>
 
   <section class="summary">
     <div class="card">
-        <h3> Total Income </h3>
-        <span class="amount" id="totalIncome">$1400</span>
-    </div>
-
-    <div class="card">
-        <h3> Total Expenses </h3>
-        <span class="amount" id="totalExpenses"></span>
-    </div>
-
-    <div class="card">
-        <h3> Balance </h3>
-        <span class="amount" id="Balance">$1400</span>
-    </div>
-
-    <div class="break"></div>
-
-    <div class="card">
-        <h3> Last 7 Days </h3>
-        <table> </table>
+      <h3>Total Income</h3>
+      <span id="totalIncome">$0</span>
     </div>
     <div class="card">
-
+      <h3>Total Expenses</h3>
+      <span id="totalExpenses">$0</span>
     </div>
-
-    <div class="break"></div>
-
-    <section>
-        <div class="card">
-            <h4> RECENT TRANSACTIONS </h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th> Date </th>
-                        <th> Description </th>
-                        <th> Category </th>
-                        <th> Amount </th>
-                    </tr>
-                </thead>
-                <tbody id="recordTables">
-                </tbody>
-            </table>
-        </div>
-    </section>
-    
-    <div class="break"></div>
-
-    <section class="addTransaction" >
-        <h4> ADD TRANSACTION</h4><br>
-        <label for="description"> Description: </label><br>
-        <input type="text" name="description" id="description" placeholder="Description"><br><br>
-
-        <label for="amount">AMOUNT(RWF): </label><br>
-        <input type="text" name="amount" id="amount"><br><br>
-
-        <label for="date"> DATE: </label><br>
-        <input type="date" name="date" id="date" placeholder="MM-DD-YYYY"><br><br>
-
-        <label for="category"> Category: </label><br>
-        <input type="text" name="category" id="category"><br><br><br>
-
-        <button onclick="addStorage()" type="submit"> Save </button><br>
-        <button class=""> Cancel </button>
-
-    </section>
-
+    <div class="card">
+      <h3>Balance</h3>
+      <span id="balance">$0</span>
+    </div>
   </section>
 
-  <script>
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-      document.getElementById('nav-links').classList.toggle('active');
-    });
-  </script>
-  <script src="../jsScripts/transaction.js"></script>
+  <section class="add-transaction">
+    <h3>Add Transaction</h3>
+    <form id="transactionForm">
+      <input type="date" name="date" id="date">
+      <input type="text" id="description" placeholder="Description" required>
+      <input type="number" id="amount" placeholder="Amount" required>
+      <select id="category">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button type="submit" onclick="addStorage()">Add</button>
+    </form>
+  </section>
+
+  <section class="transactions">
+    <h3>Recent Transactions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody id="transactionTable"></tbody>
+    </table>
+  </section>
+
+  <div class="card">
+    <h4>Spending Overview</h4>
+    <canvas id="expenseChart"></canvas>
+  </div>
+
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('nav-links').classList.toggle('active');
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../jsScripts/transaction.js"></script>
 </body>
 </html>

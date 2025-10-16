@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
+
   <nav class="navbar">
     <h2 class="logo"><a href="index.html">Finance Tracker</a></h2>
     <button class="menu-toggle" id="menu-toggle">☰</button>
@@ -14,9 +15,25 @@
       <li><a href="pages/dashboard.html">Dashboard</a></li>
       <li><a href="pages/transactions.html">Transactions</a></li>
       <li><a href="pages/contact.html">Contact Us</a></li>
-      <li><a href="pages/setting.html">Settings</a></li>
+      <li><a href="pages/settings.html">Settings</a></li>
     </ul>
   </nav>
+
+  <section class="hero" style="text-align:center; margin:60px 20px;">
+    <h1 style="font-size:32px; color:#262652;">Welcome to Your Finance Tracker</h1>
+    <p style="color:#555; margin-top:10px;">
+      Take control of your spending, manage your income, and stay organized.
+    </p>
+    <a href="pages/dashboard.html">
+      <button>Get Started</button>
+    </a>
+  </section>
+
+  <section id="reviewCards"></section>
+
+  <footer style="text-align:center; padding:20px; color:#666;">
+    <p>&copy; 2025 Student Finance Tracker. All rights reserved.</p>
+  </footer>
 
   <script>
     document.getElementById('menu-toggle').addEventListener('click', function() {
