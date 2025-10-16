@@ -36,9 +36,9 @@
   <section class="add-transaction">
     <h3>Add Transaction</h3>
     <form id="transactionForm">
-      <input type="date" name="date" id="date">
+      <input type="date" name="date" id="date" placeholder="MM-DD-YYYY">
       <input type="text" id="description" placeholder="Description" required>
-      <input type="number" id="amount" placeholder="Amount" required>
+      <input type="number" id="amount" placeholder="Amount"  required>
       <select id="accounts">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
@@ -54,7 +54,7 @@
       <input 
         type="text" 
         id="searchInput" 
-        placeholder="Search with regex (e.g., ^2024.*income$)"
+        placeholder="Search"        
         aria-label="Search transactions with regex pattern"
       />
       <button id="caseSensitiveBtn" type="button">Case: aa</button>
@@ -80,6 +80,9 @@
     <h4>Spending Overview</h4>
     <canvas id="expensesChart"></canvas>
   </div>
+  <footer style="text-align:center; padding:20px; color:#666;">
+    <p>&copy; 2025 Student Finance Tracker.</p>
+  </footer>
 
 <script>
   document.getElementById('menu-toggle').addEventListener('click', function() {

@@ -10,51 +10,47 @@ body {
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    margin-top: 10px;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.navbar h2 a {
-    background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .logo a {
   text-decoration: none;
-  color: #000000;
+  color: #000;
   font-weight: bold;
+  font-size: 20px;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    background-color: white;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  background-color: white;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #444444;
+  color: #444;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-  color: black;
+  color: #000;
 }
 
 .menu-toggle {
   display: none;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
 }
 
@@ -98,7 +94,7 @@ div input[type="text"] {
   padding: 8px 12px;
 }
 
-button {
+section button {
   margin-top: 20px;
   background-color: #262652;
   color: #fff;
@@ -109,7 +105,22 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+section button:hover {
+  background-color: #1f1f3e;
+}
+
+div button {
+  margin-top: 20px;
+  background-color: #262652;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+div button:hover {
   background-color: #1f1f3e;
 }
 
@@ -284,13 +295,12 @@ input:focus {
   }
 
   .nav-links {
-    text-decoration: none;
     display: none;
-    flex-direction:  column;
-    background-color: white;
+    flex-direction: column;
     position: absolute;
     top: 60px;
     right: 20px;
+    background-color: white;
     width: 200px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -298,14 +308,11 @@ input:focus {
 
   .nav-links.active {
     display: flex;
-    background-color: white;
   }
 
   .nav-links li {
-    border-radius: 10px;
     text-align: right;
     padding: 10px 15px;
-    background-color: white;
   }
 
   .summary {

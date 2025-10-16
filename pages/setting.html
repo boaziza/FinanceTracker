@@ -8,14 +8,14 @@
 </head>
 <body>
   <nav class="navbar">
-      <h2 class="logo"><a href="index.html">Finance Tracker</a></h2>
-      <button class="menu-toggle" id="menu-toggle">☰</button>
-      <ul class="nav-links" id="nav-links">
+    <h2 class="logo"><a href="index.html">Finance Tracker</a></h2>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="transactions.html">Transactions</a></li>
       <li><a href="contact.html">Contact Us</a></li>
       <li><a href="setting.html">Settings</a></li>
-      </ul>
+    </ul>
   </nav> <br> <br> 
 
   <main id="main-content" class="container" role="main">
@@ -69,7 +69,7 @@
               </label>
               <button id="reset-data" class="btn btn-secondary">Reset App Data</button>
             </div>
-            <p id="import-note" class="small">Imported JSON must be an array of records with keys: id, description/title, amount (number), category/tag, date (YYYY-MM-DD), createdAt, updatedAt.</p>
+            <p id="import-note" class="small">Imported JSON must be an array of records with keys: id, description, amount, category, date (MM-DD-YYYY), updatedAt.</p>
             <div id="import-errors" role="status" aria-live="polite" class="small" style="margin-top:.5rem;color:#8b0000"></div>
           </fieldset>
 
@@ -78,7 +78,6 @@
         <aside class="col" aria-labelledby="about-heading">
 
           <section aria-labelledby="stats-heading" style="margin-top:1rem">
-            <h3 id="stats-heading">Quick Actions</h3>
             <p><button id="save-now" class="btn">Save Settings</button></p>
             <p class="small">Status: <span id="status-text" role="status" aria-live="polite">Idle</span></p>
           </section>
@@ -93,6 +92,9 @@
       <p><strong>GitHub:</strong> <a href="https://github.com/boaziza" target="_blank">@boaziza</a></p>
       <p><strong>Email:</strong> <a href="mailto:b.iza@alustudent.com">b.iza@alustudent.com</a></p>
   </div>
+  <footer style="text-align:center; padding:20px; color:#666;">
+    <p>&copy; 2025 Student Finance Tracker.</p>
+  </footer>
   <script type="module" src="../jsScripts/setting.js"></script>
 </body>
 </html>
