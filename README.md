@@ -77,7 +77,10 @@ index.html
 
 ---
 ##  GitHub Pages URL link
-  https://boaziza.github.io/FinanceTracker/
+    https://boaziza.github.io/FinanceTracker/
+
+## GitHub Repository link
+    https://github.com/boaziza/FinanceTracker.git
 
 ## 🧪 How to Run Tests
 
