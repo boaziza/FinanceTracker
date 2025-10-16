@@ -195,6 +195,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let caseSensitive = false;
   let sortState = { key: null, asc: true };
 
+  const transactions = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith("transaction_")) {
+      const item = JSON.parse(localStorage.getItem(key));
+      // Ensure it has required fields
+      if (item.date && item.description && item.category && item.amount) {
+        transactions.push(item);
+      }
+    }
+  }
+
   function renderTable(data) {
     tBody.innerHTML = "";
     if (data.length === 0) {
@@ -212,6 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tBody.appendChild(row);
     }
   }
+
+
 
   headers.forEach(th => {
     th.addEventListener("click", () => {
