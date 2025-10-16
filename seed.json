@@ -1,0 +1,110 @@
+[
+  {
+    "id": "transaction_001",
+    "date": "2025-01-01",
+    "description": "New Year bonus 🎉",
+    "accounts": "income",
+    "amount": 5000,
+    "currency": "USD",
+    "category": "Salary"
+  },
+  {
+    "id": "transaction_002",
+    "date": "2024-02-29",
+    "description": "Leap day celebration lunch",
+    "accounts": "expense",
+    "amount": 24.99,
+    "currency": "USD",
+    "category": "Food"
+  },
+  {
+    "id": "transaction_003",
+    "date": "2025-10-16",
+    "description": "Book: 'Algorithms – 4th Edition'",
+    "accounts": "expense",
+    "amount": 78.5,
+    "currency": "USD",
+    "category": "Books"
+  },
+  {
+    "id": "transaction_004",
+    "date": "2025-09-30",
+    "description": "Campus Transport (Bus Pass)",
+    "accounts": "expense",
+    "amount": 45,
+    "currency": "USD",
+    "category": "Transport"
+  },
+  {
+    "id": "transaction_005",
+    "date": "2025-12-25",
+    "description": "Freelance Web Design 💻",
+    "accounts": "income",
+    "amount": 1200,
+    "currency": "USD",
+    "category": "Freelance"
+  },
+  {
+    "id": "transaction_006",
+    "date": "2025-05-02",
+    "description": "Coffee ☕ - after exam stress relief",
+    "accounts": "expense",
+    "amount": 3.75,
+    "currency": "USD",
+    "category": "Food"
+  },
+  {
+    "id": "transaction_007",
+    "date": "2023-11-15",
+    "description": "Used Laptop Purchase (Refurb.)",
+    "accounts": "expense",
+    "amount": 650.5,
+    "currency": "USD",
+    "category": "Electronics"
+  },
+  {
+    "id": "transaction_008",
+    "date": "2026-01-01",
+    "description": "Scholarship Payment – Spring 2026",
+    "accounts": "income",
+    "amount": 20000,
+    "currency": "USD",
+    "category": "Scholarship"
+  },
+  {
+    "id": "transaction_009",
+    "date": "2025-08-05",
+    "description": "Library fine: 'Overdue  days'",
+    "accounts": "expense",
+    "amount": 1,
+    "currency": "USD",
+    "category": "Fees"
+  },
+  {
+    "id": "transaction_010",
+    "date": "2024-07-04",
+    "description": "Side Hustle: Tutoring (Math, Physics)",
+    "accounts": "income",
+    "amount": 220.25,
+    "currency": "USD",
+    "category": "Tutoring"
+  },
+  {
+    "id": "transaction_011",
+    "date": "2025-10-10",
+    "description": "Late-night snack @ 12:00 AM",
+    "accounts": "expense",
+    "amount": 6.5,
+    "currency": "USD",
+    "category": "Food"
+  },
+  {
+    "id": "transaction_012",
+    "date": "2025-04-15",
+    "description": "Donation to Local Charity (❤️ Giving Back)",
+    "accounts": "expense",
+    "amount": 150,
+    "currency": "USD",
+    "category": "Philanthropy"
+  }
+]
