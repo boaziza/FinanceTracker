@@ -7,10 +7,10 @@ const settings = JSON.parse(localStorage.getItem('finance:settings')) || {};
 const baseCurrency = settings.baseCurrency || 'USD';
 const currency1 = settings.currency1?.code || '';
 const currency2 = settings.currency2?.code || '';
-const customCategories = settings.categories || ['Income','Expense'];
+const customCategories = settings.categories || ['Food','Books','Transport','Entertainment','Fees','Other'];
 
 const categorySelect = document.getElementById('category');
-categorySelect.innerHTML = ''; // clear first
+categorySelect.innerHTML = ''; 
 customCategories.forEach(cat => {
   const opt = document.createElement('option');
   opt.value = cat.toLowerCase();
@@ -45,8 +45,11 @@ function addStorage() {
         totalExpenses += transaction.totalExpenses;
         totalIncome += transaction.totalIncome;
     }
+    
+    const key = `transaction_${Date.now()}`;
 
     const data = {
+        id : key,
         date: date, 
         description: description, 
         accounts : accounts,
@@ -60,7 +63,6 @@ function addStorage() {
         totalIncome : totalIncome
     };
 
-    const key = `transaction_${Date.now()}`;
     localStorage.setItem(key, JSON.stringify(data));
     localStorage.setItem(expkey, JSON.stringify(exp));
 
@@ -124,36 +126,146 @@ function displayStorage() {
 displayStorage();
 
 
-
 let chart;
+
+updateChart();
+
 function updateChart() {
-    const ctx = document.getElementById('expensesChart').getContext('2d');
-    const categories = [];
-    const totals = [];
+  const canvas = document.getElementById('expensesChart');
+  if (!canvas) {
+    console.error('Canvas with id "expensesChart" not found.');
+    return;
+  }
+  const ctx = canvas.getContext('2d');
+  const categories = [];
+  const totals = [];
 
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith('transaction_')) {
+      const transaction = JSON.parse(localStorage.getItem(key));
+      const amount = parseFloat(transaction.amount) || 0;
+      const index = categories.indexOf(transaction.accounts);
+      if (index >= 0) {
+        totals[index] += amount;
+      } else {
+        categories.push(transaction.accounts);
+        totals.push(amount);
+      }
+    }
+  }
 
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key.startsWith('transaction_')) {
-            const transaction = JSON.parse(localStorage.getItem(key));
-            const index = categories.indexOf(transaction.accounts);
-            if (index >= 0) {
-                totals[index] += transaction.amount;
-            } else {
-                categories.push(transaction.accounts); 
-                totals.push(transaction.amount);
-            }
+  let incomeIndex = categories.indexOf("income");
+  let expenseIndex = categories.indexOf("expense");
+  let totalIncome = incomeIndex !== -1 ? totals[incomeIndex] : 0;
+  let totalExpenses = expenseIndex !== -1 ? totals[expenseIndex] : 0;
+
+  if (chart) {
+    chart.destroy();
+  }
+
+  chart = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Income", "Expenses"],
+      datasets: [{
+        data: [totalIncome, totalExpenses],
+        backgroundColor: ["#27247eff", "#405c97ff"],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          position: "bottom",
+          labels: { color: "#333" }
         }
+      }
     }
-
-
-    if (chart) {
-        chart.destroy();
-        chart = new Chart(ctx, {
-        type: 'bar',
-        data: {labels: categories, datasets: [{label: 'Expenses by Category', data: totals, backgroundColor: 'rgba(38,38,82,0.7)'}]},
-        options: {responsive: true, plugins: {legend: {display: false}}}
-        });
-    }
+  });
 }
 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tBody = document.getElementById("transactionTable");
+  const searchInput = document.getElementById("searchInput");
+  const caseBtn = document.getElementById("caseSensitiveBtn");
+  const searchError = document.getElementById("searchError");
+  const headers = document.querySelectorAll("th[data-sort]");
+  let caseSensitive = false;
+  let sortState = { key: null, asc: true };
+
+  function renderTable(data) {
+    tBody.innerHTML = "";
+    if (data.length === 0) {
+      tBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No records found</td></tr>`;
+      return;
+    }
+    for (const t of data) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${t.date}</td>
+        <td>${t.description}</td>
+        <td>${t.category}</td>
+        <td>${t.accounts}</td>
+        <td>${t.amount}</td>`;
+      tBody.appendChild(row);
+    }
+  }
+
+  headers.forEach(th => {
+    th.addEventListener("click", () => {
+      const key = th.dataset.sort;
+      sortState.asc = sortState.key === key ? !sortState.asc : true;
+      sortState.key = key;
+      transactions.sort((a, b) => {
+        if (key === "amount") return sortState.asc ? a.amount - b.amount : b.amount - a.amount;
+        return sortState.asc
+          ? String(a[key]).localeCompare(String(b[key]))
+          : String(b[key]).localeCompare(String(a[key]));
+      });
+      renderTable(transactions);
+      applySearch(); 
+    });
+  });
+
+  function compileRegex(input) {
+    try {
+      return input ? new RegExp(input, caseSensitive ? "" : "i") : null;
+    } catch (e) {
+      searchError.textContent = "Invalid regex pattern!";
+      return null;
+    }
+  }
+
+  function applySearch() {
+    const pattern = searchInput.value.trim();
+    searchError.textContent = "";
+    const regex = compileRegex(pattern);
+    if (pattern && !regex) return;
+
+    const rows = tBody.querySelectorAll("tr");
+    rows.forEach(row => {
+      const text = row.textContent;
+      if (!regex || regex.test(text)) {
+        row.style.display = "";
+
+        Array.from(row.children).forEach(cell => {
+          cell.innerHTML = cell.textContent.replace(regex, match => `<mark>${match}</mark>`);
+        });
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+
+  caseBtn.addEventListener("click", () => {
+    caseSensitive = !caseSensitive;
+    caseBtn.textContent = caseSensitive ? "Case: AA" : "Case: aa";
+    applySearch();
+  });
+
+  searchInput.addEventListener("input", applySearch);
+
+  renderTable(transactions);
+});

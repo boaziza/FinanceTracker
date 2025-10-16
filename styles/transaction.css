@@ -234,6 +234,27 @@ mark {
   color: #007bff;
 }
 
+.charts {
+  margin: 40px 20px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.charts h2 {
+  margin-bottom: 20px;
+  color: #262652;
+  text-align: center;
+}
+
+canvas {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: block;
+}
+
 @media (max-width: 740px) {
     .menu-toggle {
     display: block;

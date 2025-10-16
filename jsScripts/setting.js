@@ -1,6 +1,5 @@
-// ES module-style script contained in the page. Modular files are suggested for the repo.
-const KEY_SETTINGS = 'finance:settings';
-const DEFAULT_CATEGORIES = ['Food','Books','Transport','Entertainment','Fees','Other'];
+const keySettings = 'finance:settings';
+const defaultCategories = ['Food','Books','Transport','Entertainment','Fees','Other'];
 
 const validators = {
   category: /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/,
@@ -8,20 +7,16 @@ const validators = {
   rate: /^(0|[1-9]\d*)(\.\d{1,4})?$/
 };
 
-// Safe regex compiler for search feature (exportable in search module)
 export function compileRegex (input, flags='i'){
     try { return input ? new RegExp(input, flags) : null; } catch(e){ return null; }
 }
 
-// Storage helpers
-const saveSettings = (obj) => localStorage.setItem(KEY_SETTINGS, JSON.stringify(obj));
-const loadSettings = () => JSON.parse(localStorage.getItem(KEY_SETTINGS) || 'null') || {};
+const saveSettings = (obj) => localStorage.setItem(keySettings, JSON.stringify(obj));
+const loadSettings = () => JSON.parse(localStorage.getItem(keySettings) || 'null') || {};
 
-// UI wiring
 const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-// Elements
 const baseCurrencyEl = $('#base-currency');
 const curr1El = $('#currency-1');
 const rate1El = $('#rate-1');
@@ -37,7 +32,6 @@ const resetBtn = $('#reset-data');
 const saveNowBtn = $('#save-now');
 const statusText = $('#status-text');
 
-// Initialize UI from storage
 function renderCategories(categories){
     categoryListEl.innerHTML = '';
     categories.forEach(cat => {
@@ -54,7 +48,7 @@ function loadUI(){
     rate1El.value = settings.currency1?.rate || '';
     curr2El.value = settings.currency2?.code || '';
     rate2El.value = settings.currency2?.rate || '';
-    renderCategories(settings.categories || DEFAULT_CATEGORIES);
+    renderCategories(settings.categories || defaultCategories);
 }
 
 function saveUI(){
@@ -68,7 +62,6 @@ function saveUI(){
     statusText.textContent = 'Settings saved at ' + new Date().toLocaleTimeString();
 }
 
-// Category add/remove with validation
 addCategoryBtn.addEventListener('click', (e) => {
     const val = newCategoryEl.value.trim();
     if(!val){ newCategoryEl.focus(); return; }
@@ -94,74 +87,85 @@ categoryListEl.addEventListener('click', (e)=>{
     saveUI();
 });
 
-// Export JSON (export only transactions stored under KEY 'finance:records')
-exportBtn.addEventListener('click', ()=>{
-
-    let data;
-
+exportBtn.addEventListener('click', () => {
+    const data = [];
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        
-        if (key.startsWith("transaction_")) {                
-            data = localStorage.getItem(key) || '[]';
+        if (key.startsWith("transaction_")) {
+            try {
+                const value = localStorage.getItem(key);
+                if (value) {
+                    data.push(JSON.parse(value));
+                }
+            } catch (error) {
+                console.log("Error with JSON", error);
+                
+            }
         }
     }
 
-    const blob = new Blob([data], {type:'application/json'});
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'finance-data.json'; document.body.appendChild(a); a.click(); a.remove();
+    a.href = url;
+    a.download = 'finance-data.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
     URL.revokeObjectURL(url);
-    statusText.textContent = 'Exported JSON';
+    statusText.textContent = `Exported ${data.length} records to JSON`;
 });
 
-// Import JSON with validation
-importFileEl.addEventListener('change', async (e)=>{
+importFileEl.addEventListener('change', async (e) => {
     importErrorsEl.textContent = '';
-    const file = e.target.files[0]; if(!file) return;
-    try{
-    const text = await file.text();
-    const parsed = JSON.parse(text);
-    if(!Array.isArray(parsed)) throw new Error('JSON must be an array of records.');
-    // basic validation for each record
-    const errors = [];
-    parsed.forEach((rec, idx) => {
-        if(typeof rec.id !== 'string') errors.push(idx+1+': missing id');
-        if(!rec.description && !rec.title) errors.push(idx+1+': missing description/title');
-        if(typeof rec.amount !== 'number') errors.push(idx+1+': amount must be number');
-        if(!/^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/.test(rec.date||'')) errors.push(idx+1+': date invalid');
-    });
-    if(errors.length){ importErrorsEl.textContent = 'Import errors: ' + errors.join('; '); return; }
-    // If valid, save to records key (overwrites) — adjust behavior in app as needed
-    localStorage.setItem(`transaction_${Date.now()}`, JSON.stringify(parsed));
-    statusText.textContent = 'Imported ' + parsed.length + ' records';
-    }catch(err){ importErrorsEl.textContent = 'Failed to import: ' + err.message; }
-    finally{ e.target.value = ''; }
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        if (!Array.isArray(parsed)) throw new Error('JSON must be an array of records.');
+        
+        const errors = [];
+        parsed.forEach((rec, idx) => {
+            if (typeof rec.id !== 'string') errors.push(idx + 1 + ': missing id');
+            if (!rec.description && !rec.title) errors.push(idx + 1 + ': missing description/title');
+            if (typeof rec.amount !== 'number') errors.push(idx + 1 + ': amount must be number');
+            if (!/^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/.test(rec.date || '')) errors.push(idx + 1 + ': date invalid');
+        });
+        if (errors.length) { importErrorsEl.textContent = 'Import errors: ' + errors.join('; '); return; }
+        
+        parsed.forEach((rec) => {
+            const key = `transaction_${Date.now()}_${Math.random().toString(16).slice(2, 8)}`;
+            localStorage.setItem(key, JSON.stringify(rec));
+        });
+
+        statusText.textContent = 'Imported ' + parsed.length + ' records';
+    } catch (err) {
+        importErrorsEl.textContent = 'Failed to import: ' + err.message;
+    } finally {
+        e.target.value = '';
+    }
 });
 
-// Reset app data (confirm)
 resetBtn.addEventListener('click', ()=>{
     if(!confirm('Reset all app data (records + settings)?')) return;
     
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         
-        if (key.startsWith("transaction_")) {                
+        if (key.startsWith("transaction_") || key === "exp") {                
             localStorage.removeItem(key);
         }
     }
-    localStorage.removeItem(KEY_SETTINGS);
-    renderCategories(DEFAULT_CATEGORIES);
+    localStorage.removeItem(keySettings);
+    renderCategories(defaultCategories);
     statusText.textContent = 'App data reset';
 });
 
-// Save now button
 saveNowBtn.addEventListener('click', ()=>{ saveUI(); });
 
-// Auto-save when inputs lose focus
 $$("input,select").forEach(el=>el.addEventListener('blur', ()=>saveUI()));
 
-// Initial load
 loadUI();
 
 $('#menu-toggle').addEventListener('click', function(){

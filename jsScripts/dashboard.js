@@ -9,14 +9,13 @@ function loadDashboard() {
   document.getElementById("totalExpenses").textContent = `$${totalExpenses}`;
   document.getElementById("balance").textContent = `$${balance}`;
 
-  // Load recent transactions
   const tbody = document.getElementById("recentTransactions");
   let html = "";
 
   const keys = Object.keys(localStorage).filter(k => k.startsWith("transaction_"));
-  keys.sort((a, b) => b.localeCompare(a)); // latest first
+  keys.sort((a, b) => b.localeCompare(a));
 
-  for (const key of keys.slice(0, 5)) { // show last 5
+  for (const key of keys.slice(0, 5)) { 
     const tx = JSON.parse(localStorage.getItem(key));
     html += `
       <tr>
@@ -29,7 +28,6 @@ function loadDashboard() {
   }
   tbody.innerHTML = html;
 
-  // Chart.js visualization
   const ctx = document.getElementById("financeChart").getContext("2d");
 
   new Chart(ctx, {
@@ -38,7 +36,7 @@ function loadDashboard() {
       labels: ["Income", "Expenses"],
       datasets: [{
         data: [totalIncome, totalExpenses],
-        backgroundColor: ["#4CAF50", "#F44336"],
+        backgroundColor: ["#27247eff", "#405c97ff"],
         borderWidth: 0
       }]
     },
