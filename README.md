@@ -61,7 +61,8 @@ index.html
 - **CSS3** — Responsive styling  
 - **JavaScript (Vanilla)** — Logic and DOM manipulation  
 - **Chart.js** — Data visualization  
-- **LocalStorage API** — Persistent data management  
+- **LocalStorage API** — Persistent data
+ management  
 
 ---
 
@@ -75,6 +76,20 @@ index.html
 3. Launch with **Live Server** (recommended) or open `index.html` directly in your browser.
 
 ---
+##  GitHub Pages URL link
+  https://boaziza.github.io/FinanceTracker/
+
+## 🧪 How to Run Tests
+
+1. Open the app in your browser.
+2. Add multiple income and expense entries.
+3. Use the search box to test regex:
+   - Try `food|book` → should highlight those terms.
+   - Try `[A-Z]{3}` → should match currency codes.
+4. Test import/export by uploading `seed.json`.
+5. Use keyboard only (`Tab`, `Enter`) to navigate.
+6. Confirm totals and chart update in real-time.
+
 
 ## 📱 Responsiveness
 
@@ -115,6 +130,33 @@ Handles:
 - Displays feedback and status messages when actions are completed.
 
 ---
+## 🧩 Regex Catalog
+
+| Pattern | Purpose | Example Input | Valid? |
+|----------|----------|---------------|--------|
+| `/^[A-Za-z]+(?:[ -][A-Za-z]+)*$/` | Validate category names (letters, spaces, hyphens) | "Food - Drinks" | ✅ |
+| `/^[A-Z]{3}$/` | Validate currency codes | "USD", "RWF" | ✅ |
+| `/^(0|[1-9]\d*)(\.\d{1,4})?$/` | Validate exchange rate numbers | "1300", "0.95", "2.1234" | ✅ |
+| `/^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/` | Validate date format | "2025-10-16" | ✅ |
+| `new RegExp(pattern, "i")` | Used in search filter (regex search in transactions) | "book|transport" | ✅ |
+
+## ⌨️ Keyboard Map
+
+| Action | Key / Shortcut |
+|--------|----------------|
+| Navigate between input fields | `Tab` / `Shift + Tab` |
+| Submit new transaction | `Enter` (on “Add” button) |
+| Toggle menu | `Enter` or `Space` on hamburger icon |
+| Search table | Focus on search input → Type regex pattern |
+| Case sensitivity toggle | `Enter` on “Case: AA / aa” button |
+
+## ♿ Accessibility Notes
+
+- All buttons and inputs have descriptive labels and accessible text.
+- The color palette maintains high contrast for readability.
+- Fully navigable via keyboard (`Tab`, `Enter`, `Space`).
+- Chart includes legends and ARIA roles for assistive tools.
+- Mobile layout tested for zoom and text resizing.
 
 ## 🧮 Data Models
 
@@ -148,11 +190,10 @@ Handles:
 - **Category** → letters, spaces, and hyphens only.  
 - **Currency Code** → 3 uppercase letters (e.g., USD, EUR, RWF).  
 - **Rate** → numeric, up to 4 decimal places.  
-- **Date** → format `YYYY-MM-DD`.  
+- **Date** → format `MM-DD-YYYY`.  
 - **Amount** → must be a number.  
 
 ---
-
 ## 📤 Export & Import
 
 ### Export
