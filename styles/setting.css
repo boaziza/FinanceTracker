@@ -216,6 +216,49 @@ footer {
   font-size: 14px;
 }
 
+.contact-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+  margin: 30px auto;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.contact-card h3 {
+  color: #262652;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contact-card p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #444;
+}
+
+.contact-card a {
+  color: #325374;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.contact-card a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+
 /* Responsive */
 @media (max-width: 740px) {
   
